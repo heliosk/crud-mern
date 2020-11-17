@@ -6,13 +6,8 @@ import '../styles/Header.scss';
 const Header = () => {
   return (
     <header>
-      <nav>
-        <div className='nav-wrapper blue darken-3'>
-          <Link className='title' to='/'>
-            TESTE FULLSTACK CRUD MERN
-          </Link>
-        </div>
-      </nav>
+      <h5>TESTE FULLSTACK CRUD MERN</h5>
+      <hr />
     </header>
   );
 };

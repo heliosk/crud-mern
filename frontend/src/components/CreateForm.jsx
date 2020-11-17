@@ -22,6 +22,8 @@ const CreateForm = ({ createUser }) => {
         phone,
       });
 
+      setError('');
+
       Array.from(document.querySelectorAll('input')).forEach(
         (input) => (input.value = '')
       );
@@ -80,7 +82,7 @@ const CreateForm = ({ createUser }) => {
           </div>
           <button
             type='submit'
-            className='waves-effect waves-light btn blue darken-3'>
+            className='waves-effect waves-light btn green accent-4'>
             <i className='fas fa-plus-circle'></i> Criar usuário
           </button>
           {error !== '' && <div className='error'>{error}</div>}
