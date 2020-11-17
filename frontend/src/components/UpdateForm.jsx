@@ -6,7 +6,7 @@ const UpdateForm = () => {
   return (
     <div>
       <h6>
-        <i class='fas fa-user-edit'></i> Atualizar usuário
+        <i className='fas fa-user-edit'></i> Atualizar usuário
       </h6>
     </div>
   );

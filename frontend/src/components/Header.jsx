@@ -7,7 +7,7 @@ const Header = () => {
   return (
     <header>
       <nav>
-        <div class='nav-wrapper blue darken-3'>
+        <div className='nav-wrapper blue darken-3'>
           <Link className='title' to='/'>
             TESTE FULLSTACK CRUD MERN
           </Link>

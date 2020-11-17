@@ -2,19 +2,36 @@ import React, { useState } from 'react';
 
 import '../styles/CreateForm.scss';
 
-const CreateForm = () => {
+const CreateForm = ({ createUser }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [address, setAddress] = useState('');
   const [phone, setPhone] = useState('');
+  const [error, setError] = useState('');
 
-  const submitHandler = () => {};
-  //value={password} onChange={(e) => setPassword(e.target.value)}
+  const submitHandler = (e) => {
+    e.preventDefault();
+
+    if (name === '' || email === '') {
+      setError('Nome e e-mail são obrigatórios.');
+    } else {
+      createUser({
+        name,
+        email,
+        address,
+        phone,
+      });
+
+      Array.from(document.querySelectorAll('input')).forEach(
+        (input) => (input.value = '')
+      );
+    }
+  };
 
   return (
     <div>
       <h6>
-        <i class='fas fa-user-plus'></i> Criar usuário
+        <i className='fas fa-user-plus'></i> Criar usuário
       </h6>
       <div className='create-form-container'>
         <form onSubmit={submitHandler}>
@@ -25,7 +42,6 @@ const CreateForm = () => {
               name='name'
               value={name}
               onChange={(e) => setName(e.target.value)}
-              required
             />
             <label htmlFor='name'>Name</label>
           </div>
@@ -37,7 +53,6 @@ const CreateForm = () => {
               name='email'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              required
             />
             <label htmlFor='name'>E-mail</label>
           </div>
@@ -47,9 +62,8 @@ const CreateForm = () => {
               type='text'
               id='address'
               name='address'
-              value={name}
+              value={address}
               onChange={(e) => setAddress(e.target.value)}
-              required
             />
             <label htmlFor='name'>Endereço</label>
           </div>
@@ -61,13 +75,15 @@ const CreateForm = () => {
               name='phone'
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              required
             />
             <label htmlFor='name'>Telefone</label>
           </div>
-          <button className='waves-effect waves-light btn blue darken-3'>
-            <i class='fas fa-plus-circle'></i> Criar usuário
+          <button
+            type='submit'
+            className='waves-effect waves-light btn blue darken-3'>
+            <i className='fas fa-plus-circle'></i> Criar usuário
           </button>
+          {error !== '' && <div className='error'>{error}</div>}
         </form>
       </div>
     </div>
