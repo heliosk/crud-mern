@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const mongoClient = require('mongodb').MongoClient;
+const mongoose = require('mongoose');
 
 const app = express();
 
@@ -15,10 +15,8 @@ app.use(
   })
 );
 
-mongoClient.connect(process.env.MONGODB_URI, function (err, db) {
-  console.log('Connected successfully to database');
-
-  db.close();
+mongoose.connect(process.env.MONGODB_URI, () => {
+  console.log('connected to mongodb');
 });
 
 app.use((req, res, next) => {

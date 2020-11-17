@@ -1,13 +1,25 @@
 const User = require('../models/user.model');
 
-exports.getUsers = function (req, res) {};
+exports.getUsers = async function (req, res) {
+  try {
+    const users = await User.find();
+    res.json(users);
+  } catch (err) {
+    res.json({ message: err });
+  }
+};
 
-exports.getUser = function (req, res) {};
+exports.getUser = async function (req, res) {
+  try {
+    const user = await User.findById(req.params.id);
+    res.json(user);
+  } catch (err) {
+    res.json({ message: err });
+  }
+};
 
-exports.createUser = function (req, res) {
+exports.createUser = async function (req, res) {
   const { name, email, address, phone } = req.body;
-
-  console.log('here onw');
 
   const user = new User({
     name,
@@ -16,17 +28,29 @@ exports.createUser = function (req, res) {
     phone,
   });
 
-  console.log(user);
+  try {
+    const savedUser = await user.save();
+    res.json(savedUser);
+  } catch (err) {
+    res.json({ message: err });
+  }
+};
 
-  user.save(function (err) {
-    console.log('inside');
-    if (err) {
-      return next(err);
-    }
-    res.send('User was created succesfully!');
+exports.updateUser = function (req, res) {
+  User.findByIdAndUpdate(req.params.id, { $set: req.body }, function (
+    err,
+    user
+  ) {
+    if (err) return next(err);
+    res.send(user);
   });
 };
 
-exports.updateUser = function (req, res) {};
-
-exports.deleteUser = function (req, res) {};
+exports.deleteUser = async function (req, res) {
+  try {
+    const removedUser = await User.remove({ _id: req.params.id });
+    res.json(removedUser);
+  } catch (err) {
+    res.json({ message: err });
+  }
+};

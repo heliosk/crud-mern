@@ -6,6 +6,10 @@ const UserSchema = new Schema({
   email: { type: String, require: true, max: 100 },
   address: { type: String, required: false, max: 255 },
   phone: { type: Number, required: false },
+  created: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 module.exports = moongose.model('User', UserSchema);
