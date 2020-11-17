@@ -5,7 +5,7 @@ import '../styles/Header.scss';
 const Header = () => {
   return (
     <header>
-      <h5>TESTE FULLSTACK CRUD MERN</h5>
+      <h5>TESTE QUALICORP - DESENVOLVEDOR FULLSTACK</h5>
       <hr />
     </header>
   );

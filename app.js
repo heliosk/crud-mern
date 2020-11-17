@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const path = require('path');
 
 const app = express();
 
@@ -15,9 +16,10 @@ app.use(
   })
 );
 
-mongoose.connect(process.env.MONGODB_URI, () => {
-  console.log('connected to mongodb');
-});
+mongoose
+  .connect(process.env.MONGODB_URI)
+  .then(() => console.log('Mongodb connected successfully'))
+  .catch((err) => console.log(err));
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -35,6 +37,13 @@ app.use((req, res, next) => {
 });
 
 app.use('/users', require('./routes/users'));
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+  });
+}
 
 app.get('/', (req, res) => {
   res.json({
