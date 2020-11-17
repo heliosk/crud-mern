@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
+const mongoClient = require('mongodb').MongoClient;
 
 const app = express();
 
@@ -13,6 +14,12 @@ app.use(
     extended: false,
   })
 );
+
+mongoClient.connect(process.env.MONGODB_URI, function (err, db) {
+  console.log('Connected successfully to database');
+
+  db.close();
+});
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -28,6 +35,8 @@ app.use((req, res, next) => {
 
   next();
 });
+
+app.use('/users', require('./routes/users'));
 
 app.get('/', (req, res) => {
   res.json({
