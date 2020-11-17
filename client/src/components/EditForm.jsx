@@ -102,12 +102,12 @@ const EditForm = ({ current, updateUser, setEdit }) => {
           </div>
           <button
             type='submit'
-            className='waves-effect waves-light btn green accent-4'>
+            className='waves-light waves-effect btn green accent-4'>
             <i className='fas fa-check'></i> Atualizar
           </button>
           <button
             type='button'
-            className='waves-effect waves-light btn red lighten-1'
+            className='waves-light waves-effect  btn red lighten-1'
             onClick={() => setEdit()}>
             <i className='fas fa-times'></i> Cancelar
           </button>

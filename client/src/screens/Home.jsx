@@ -4,9 +4,9 @@ import api from '../services/api';
 import Header from '../components/Header';
 import CreateForm from '../components/CreateForm';
 import UserTable from '../components/UserTable';
+import EditForm from '../components/EditForm';
 
 import '../styles/Home.scss';
-import EditForm from '../components/EditForm';
 
 const Home = () => {
   const [users, setUsers] = useState([]);
@@ -18,10 +18,16 @@ const Home = () => {
     updateUsersTable();
   }, []);
 
-  const updateUsersTable = () => {
-    api.get('users').then((res) => {
-      setUsers(res.data);
-    });
+  const updateUsersTable = async () => {
+    try {
+      const res = await api.get('users');
+
+      if (res.status === 200) {
+        setUsers(res.data);
+      }
+    } catch (err) {
+      setError(err);
+    }
   };
 
   const createUser = async (body) => {
@@ -74,7 +80,7 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <>
       <Header />
       {error && <div>error</div>}
       <div className='home-container'>
@@ -95,7 +101,7 @@ const Home = () => {
           editTableUser={editTableUser}
         />
       </div>
-    </div>
+    </>
   );
 };
 

@@ -90,7 +90,7 @@ const CreateForm = ({ createUser }) => {
           </div>
           <button
             type='submit'
-            className='waves-effect waves-light btn green accent-4'>
+            className='waves-light waves-effect btn green accent-4'>
             <i className='fas fa-plus-circle'></i> Criar
           </button>
           {error !== '' && <div className='error'>{error}</div>}
