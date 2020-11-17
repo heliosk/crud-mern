@@ -48,7 +48,7 @@ exports.updateUser = function (req, res) {
 
 exports.deleteUser = async function (req, res) {
   try {
-    const removedUser = await User.remove({ _id: req.params.id });
+    const removedUser = await User.deleteOne({ _id: req.params.id });
     res.json(removedUser);
   } catch (err) {
     res.json({ message: err });
