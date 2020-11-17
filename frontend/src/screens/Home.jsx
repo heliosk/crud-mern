@@ -6,9 +6,12 @@ import CreateForm from '../components/CreateForm';
 import UserTable from '../components/UserTable';
 
 import '../styles/Home.scss';
+import EditForm from '../components/EditForm';
 
 const Home = () => {
   const [users, setUsers] = useState([]);
+  const [current, setCurrent] = useState({});
+  const [isEditMode, setIsEditMode] = useState(false);
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -33,6 +36,19 @@ const Home = () => {
     }
   };
 
+  const updateUser = async (id, body) => {
+    try {
+      const res = await api.patch(`users/${id}`, body);
+
+      if (res.status === 200) {
+        updateUsersTable();
+        setIsEditMode(false);
+      }
+    } catch (err) {
+      setError(err);
+    }
+  };
+
   const deleteUser = async (id) => {
     try {
       await api.delete(`users/${id}`);
@@ -43,13 +59,43 @@ const Home = () => {
     }
   };
 
+  const editTableUser = (user) => {
+    setCurrent({
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      address: user.address,
+      phone: user.phone,
+    });
+
+    setIsEditMode(true);
+  };
+
+  const setEdit = (edit) => {
+    setIsEditMode(edit);
+  };
+
   return (
     <div>
       <Header />
       {error && <div>error</div>}
       <div className='home-container'>
-        <CreateForm createUser={createUser} />
-        <UserTable deleteUser={deleteUser} users={users} />
+        {!isEditMode ? (
+          <CreateForm createUser={createUser} />
+        ) : (
+          <EditForm
+            updateUser={updateUser}
+            isEditMode={isEditMode}
+            setEdit={setEdit}
+            current={current}
+          />
+        )}
+
+        <UserTable
+          deleteUser={deleteUser}
+          users={users}
+          editTableUser={editTableUser}
+        />
       </div>
     </div>
   );

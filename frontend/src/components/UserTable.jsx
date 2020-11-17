@@ -2,13 +2,7 @@ import React from 'react';
 
 import '../styles/UserTable.scss';
 
-const UserTable = ({ users, deleteUser }) => {
-  const handleDelete = (id) => {
-    deleteUser(id);
-  };
-
-  const handleEdit = () => {};
-
+const UserTable = ({ users, deleteUser, editTableUser }) => {
   return (
     <div className='user-list'>
       <table className='responsive-table'>
@@ -31,13 +25,13 @@ const UserTable = ({ users, deleteUser }) => {
                 <td className='center-align '>
                   <button
                     className='action-buttons waves-effect waves-light btn-floating green accent-4'
-                    onClick={handleEdit}>
+                    onClick={() => editTableUser(user)}>
                     <i className='fas fa-user-edit'></i>
                   </button>
 
                   <button
                     className='action-buttons waves-effect waves-light btn-floating red lighten-1'
-                    onClick={() => handleDelete(user._id)}>
+                    onClick={() => deleteUser(user._id)}>
                     <i className='fas fa-user-times'></i>
                   </button>
                 </td>
