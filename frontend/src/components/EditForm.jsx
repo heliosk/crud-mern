@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import InputMask from 'react-input-mask';
+import * as EmailValidator from 'email-validator';
 
 import '../styles/EditForm.scss';
 
@@ -11,8 +13,6 @@ const EditForm = ({ current, updateUser, setEdit }) => {
   const [error, setError] = useState('');
 
   useEffect(() => {
-    console.log(current);
-
     setId(current.id);
     setName(current.name);
     setEmail(current.email);
@@ -25,6 +25,9 @@ const EditForm = ({ current, updateUser, setEdit }) => {
 
     if (name === '' || email === '') {
       setError('Nome e e-mail são obrigatórios.');
+    } else if (!EmailValidator.validate(email)) {
+      setError('E-mail não é válido.');
+      return false;
     } else {
       updateUser(id, { name, email, address, phone });
 
@@ -39,7 +42,7 @@ const EditForm = ({ current, updateUser, setEdit }) => {
   return (
     <div>
       <h6>
-        <i className='fas fa-user-plus'></i> Criar usuário
+        <i class='fas fa-user-edit'></i> Editar usuário
       </h6>
       <div className='edit-form-container'>
         <form onSubmit={submitHandler}>
@@ -52,7 +55,7 @@ const EditForm = ({ current, updateUser, setEdit }) => {
               onChange={(e) => setName(e.target.value)}
             />
             <label htmlFor='name' className='active'>
-              Name
+              Nome
             </label>
           </div>
 
@@ -75,6 +78,7 @@ const EditForm = ({ current, updateUser, setEdit }) => {
               id='address'
               name='address'
               value={address}
+              maxLength={40}
               onChange={(e) => setAddress(e.target.value)}
             />
             <label htmlFor='name' className='active'>
@@ -83,7 +87,9 @@ const EditForm = ({ current, updateUser, setEdit }) => {
           </div>
 
           <div className='input-field'>
-            <input
+            <InputMask
+              mask='(99)99999-9999'
+              maskChar={null}
               type='text'
               id='phone'
               name='phone'
@@ -97,13 +103,13 @@ const EditForm = ({ current, updateUser, setEdit }) => {
           <button
             type='submit'
             className='waves-effect waves-light btn green accent-4'>
-            <i className='fas fa-plus-circle'></i> Atualizar
+            <i className='fas fa-check'></i> Atualizar
           </button>
           <button
             type='button'
             className='waves-effect waves-light btn red lighten-1'
             onClick={() => setEdit()}>
-            <i className='fas fa-plus-circle'></i> Cancelar
+            <i className='fas fa-times'></i> Cancelar
           </button>
           {error !== '' && <div className='error'>{error}</div>}
         </form>

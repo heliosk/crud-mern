@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import InputMask from 'react-input-mask';
+import * as EmailValidator from 'email-validator';
 
 import '../styles/CreateForm.scss';
 
@@ -14,6 +16,9 @@ const CreateForm = ({ createUser }) => {
 
     if (name === '' || email === '') {
       setError('Nome e e-mail são obrigatórios.');
+    } else if (!EmailValidator.validate(email)) {
+      setError('E-mail não é válido.');
+      return false;
     } else {
       createUser({
         name,
@@ -45,7 +50,7 @@ const CreateForm = ({ createUser }) => {
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
-            <label htmlFor='name'>Name</label>
+            <label htmlFor='name'>Nome</label>
           </div>
 
           <div className='input-field'>
@@ -65,13 +70,16 @@ const CreateForm = ({ createUser }) => {
               id='address'
               name='address'
               value={address}
+              maxLength={40}
               onChange={(e) => setAddress(e.target.value)}
             />
             <label htmlFor='name'>Endereço</label>
           </div>
 
           <div className='input-field'>
-            <input
+            <InputMask
+              mask='(99)99999-9999'
+              maskChar={null}
               type='text'
               id='phone'
               name='phone'
@@ -83,7 +91,7 @@ const CreateForm = ({ createUser }) => {
           <button
             type='submit'
             className='waves-effect waves-light btn green accent-4'>
-            <i className='fas fa-plus-circle'></i> Criar usuário
+            <i className='fas fa-plus-circle'></i> Criar
           </button>
           {error !== '' && <div className='error'>{error}</div>}
         </form>

@@ -5,6 +5,9 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-color: #f8f8f8;
+  color: #0e0e0e;
 }
 
 code {
@@ -25,4 +28,9 @@ code {
 .input-field input[type]:focus:not([readonly]) + label,
 .input-field textarea:focus:not([readonly]) + label {
   color: #1cbb29;
+}
+
+::selection {
+  color: white;
+  background: #1cbb29;
 }

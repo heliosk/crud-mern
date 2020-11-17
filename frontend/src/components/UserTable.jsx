@@ -12,6 +12,7 @@ const UserTable = ({ users, deleteUser, editTableUser }) => {
             <th>E-mail</th>
             <th>Endereço</th>
             <th>Telefone</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>

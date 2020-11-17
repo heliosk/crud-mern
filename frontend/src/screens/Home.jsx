@@ -26,11 +26,9 @@ const Home = () => {
 
   const createUser = async (body) => {
     try {
-      const res = await api.post('users', body);
+      await api.post('users', body);
 
-      if (res.status === 200) {
-        updateUsersTable();
-      }
+      updateUsersTable();
     } catch (err) {
       setError(err);
     }
