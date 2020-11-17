@@ -9,6 +9,7 @@ import '../styles/Home.scss';
 
 const Home = () => {
   const [users, setUsers] = useState([]);
+  const [error, setError] = useState('');
 
   useEffect(() => {
     updateUsersTable();
@@ -20,19 +21,35 @@ const Home = () => {
     });
   };
 
-  const createUser = (body) => {
-    console.log(body);
-    api.post('users', body).then((res) => {
+  const createUser = async (body) => {
+    try {
+      const res = await api.post('users', body);
+
+      if (res.status === 200) {
+        updateUsersTable();
+      }
+    } catch (err) {
+      setError(err);
+    }
+  };
+
+  const deleteUser = async (id) => {
+    try {
+      await api.delete(`users/${id}`);
+
       updateUsersTable();
-    });
+    } catch (err) {
+      setError(err);
+    }
   };
 
   return (
     <div>
       <Header />
+      {error && <div>error</div>}
       <div className='home-container'>
         <CreateForm createUser={createUser} />
-        <UserTable users={users} />
+        <UserTable deleteUser={deleteUser} users={users} />
       </div>
     </div>
   );

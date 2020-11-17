@@ -2,8 +2,12 @@ import React from 'react';
 
 import '../styles/UserTable.scss';
 
-const UserTable = ({ users }) => {
-  console.log(users);
+const UserTable = ({ users, deleteUser }) => {
+  const handleDelete = (id) => {
+    deleteUser(id);
+  };
+
+  const handleEdit = () => {};
 
   return (
     <div className='user-list'>
@@ -25,11 +29,15 @@ const UserTable = ({ users }) => {
                 <td>{user.address}</td>
                 <td>{user.phone}</td>
                 <td className='center-align '>
-                  <button className='action-buttons waves-effect waves-light btn-floating green accent-4'>
+                  <button
+                    className='action-buttons waves-effect waves-light btn-floating green accent-4'
+                    onClick={handleEdit}>
                     <i className='fas fa-user-edit'></i>
                   </button>
 
-                  <button className='action-buttons waves-effect waves-light btn-floating red lighten-1'>
+                  <button
+                    className='action-buttons waves-effect waves-light btn-floating red lighten-1'
+                    onClick={() => handleDelete(user._id)}>
                     <i className='fas fa-user-times'></i>
                   </button>
                 </td>

@@ -22,11 +22,11 @@ const CreateForm = ({ createUser }) => {
         phone,
       });
 
+      setName('');
+      setEmail('');
+      setAddress('');
+      setPhone('');
       setError('');
-
-      Array.from(document.querySelectorAll('input')).forEach(
-        (input) => (input.value = '')
-      );
     }
   };
 
