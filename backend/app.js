@@ -38,7 +38,7 @@ app.use('/users', require('./routes/users'));
 
 app.get('/', (req, res) => {
   res.json({
-    msg: 'its working!',
+    msg: 'Teste Qualicorp',
   });
 });
 
