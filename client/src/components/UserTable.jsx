@@ -43,7 +43,7 @@ const UserTable = ({ users, deleteUser, editTableUser }) => {
           ) : (
             <tr>
               <td colSpan='6'>
-                <i class='fas fa-user-slash'></i> Nenhum usuário cadastrado
+                <i className='fas fa-user-slash'></i> Nenhum usuário cadastrado
               </td>
             </tr>
           )}
