@@ -79,7 +79,7 @@ const EditForm = ({ current, updateUser, setEdit }) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <label htmlFor='name' className='active'>
+            <label htmlFor='email' className='active'>
               E-mail
             </label>
           </div>
@@ -93,7 +93,7 @@ const EditForm = ({ current, updateUser, setEdit }) => {
               maxLength={40}
               onChange={(e) => setAddress(e.target.value)}
             />
-            <label htmlFor='name' className='active'>
+            <label htmlFor='address' className='active'>
               Endereço
             </label>
           </div>
@@ -108,7 +108,9 @@ const EditForm = ({ current, updateUser, setEdit }) => {
               value={cpf}
               onChange={(e) => setCpf(e.target.value)}
             />
-            <label htmlFor='name'>CPF</label>
+            <label htmlFor='cpf' className='active'>
+              CPF
+            </label>
           </div>
 
           <div className='input-field'>
@@ -121,7 +123,7 @@ const EditForm = ({ current, updateUser, setEdit }) => {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
             />
-            <label htmlFor='name' className='active'>
+            <label htmlFor='phone' className='active'>
               Telefone
             </label>
           </div>
