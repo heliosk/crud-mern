@@ -26,12 +26,13 @@ exports.getUser = async function (req, res) {
 };
 
 exports.createUser = async function (req, res) {
-  const { name, email, address, phone } = req.body;
+  const { name, email, address, cpf, phone } = req.body;
 
   const user = new User({
     name,
     email,
     address,
+    cpf,
     phone,
   });
 

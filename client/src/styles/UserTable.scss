@@ -1,6 +1,14 @@
 .user-list {
   margin-left: 40px;
-  min-width: 500px;
+  min-width: 700px;
+
+  @media only screen and (max-width: 1020px) {
+    min-width: 600px;
+  }
+
+  @media only screen and (max-width: 600px) {
+    margin: 0;
+  }
 }
 
 .action-buttons {

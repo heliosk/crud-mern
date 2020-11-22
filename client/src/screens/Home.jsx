@@ -69,6 +69,7 @@ const Home = () => {
       name: user.name,
       email: user.email,
       address: user.address,
+      cpf: user.cpf,
       phone: user.phone,
     });
 

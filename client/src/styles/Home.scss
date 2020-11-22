@@ -3,4 +3,9 @@
   flex-direction: row;
   justify-content: center;
   margin: 30px;
+
+  @media only screen and (max-width: 900px) {
+    flex-direction: column;
+    justify-content: space-around;
+  }
 }

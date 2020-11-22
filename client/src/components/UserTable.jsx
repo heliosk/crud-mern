@@ -11,6 +11,7 @@ const UserTable = ({ users, deleteUser, editTableUser }) => {
             <th>Nome</th>
             <th>E-mail</th>
             <th>Endereço</th>
+            <th>CPF</th>
             <th>Telefone</th>
             <th></th>
           </tr>
@@ -22,10 +23,11 @@ const UserTable = ({ users, deleteUser, editTableUser }) => {
                 <td>{user.name}</td>
                 <td>{user.email}</td>
                 <td>{user.address}</td>
+                <td>{user.cpf}</td>
                 <td>{user.phone}</td>
                 <td className='center-align'>
                   <button
-                    className='action-buttons waves-effect btn-floating waves-light green accent-4'
+                    className='action-buttons waves-effect btn-floating waves-light blue darken-4'
                     onClick={() => editTableUser(user)}>
                     <i className='fas fa-user-edit'></i>
                   </button>
@@ -40,7 +42,9 @@ const UserTable = ({ users, deleteUser, editTableUser }) => {
             ))
           ) : (
             <tr>
-              <td>{users[0]} Nenhum usuário cadastrado</td>
+              <td colSpan='6'>
+                <i class='fas fa-user-slash'></i> Nenhum usuário cadastrado
+              </td>
             </tr>
           )}
         </tbody>

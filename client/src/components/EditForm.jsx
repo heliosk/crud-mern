@@ -9,6 +9,7 @@ const EditForm = ({ current, updateUser, setEdit }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState(' ');
   const [address, setAddress] = useState('');
+  const [cpf, setCpf] = useState('');
   const [phone, setPhone] = useState('');
   const [error, setError] = useState('');
 
@@ -17,6 +18,7 @@ const EditForm = ({ current, updateUser, setEdit }) => {
     setName(current.name);
     setEmail(current.email);
     setAddress(current.address);
+    setCpf(current.cpf);
     setPhone(current.phone);
   }, [current]);
 
@@ -34,6 +36,7 @@ const EditForm = ({ current, updateUser, setEdit }) => {
       setName('');
       setEmail('');
       setAddress('');
+      setCpf('');
       setPhone('');
       setError('');
     }
@@ -42,7 +45,7 @@ const EditForm = ({ current, updateUser, setEdit }) => {
   return (
     <div>
       <h6>
-        <i class='fas fa-user-edit'></i> Editar usuário
+        <i className='fas fa-user-edit'></i> Editar usuário
       </h6>
       <div className='edit-form-container'>
         <form onSubmit={submitHandler}>
@@ -88,6 +91,19 @@ const EditForm = ({ current, updateUser, setEdit }) => {
 
           <div className='input-field'>
             <InputMask
+              mask='999.999.999-99'
+              maskChar={null}
+              type='text'
+              id='cpf'
+              name='cpf'
+              value={cpf}
+              onChange={(e) => setCpf(e.target.value)}
+            />
+            <label htmlFor='name'>CPF</label>
+          </div>
+
+          <div className='input-field'>
+            <InputMask
               mask='(99)99999-9999'
               maskChar={null}
               type='text'
@@ -102,7 +118,7 @@ const EditForm = ({ current, updateUser, setEdit }) => {
           </div>
           <button
             type='submit'
-            className='waves-light waves-effect btn green accent-4'>
+            className='waves-light waves-effect btn blue darken-4'>
             <i className='fas fa-check'></i> Atualizar
           </button>
           <button

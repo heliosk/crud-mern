@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import InputMask from 'react-input-mask';
 import * as EmailValidator from 'email-validator';
+import { isValidCpf } from '../utils/formValidator';
 
 import '../styles/CreateForm.scss';
 
@@ -8,6 +9,7 @@ const CreateForm = ({ createUser }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [address, setAddress] = useState('');
+  const [cpf, setCpf] = useState('');
   const [phone, setPhone] = useState('');
   const [error, setError] = useState('');
 
@@ -16,23 +18,33 @@ const CreateForm = ({ createUser }) => {
 
     if (name === '' || email === '') {
       setError('Nome e e-mail são obrigatórios.');
-    } else if (!EmailValidator.validate(email)) {
+      return false;
+    }
+
+    if (!EmailValidator.validate(email)) {
       setError('E-mail não é válido.');
       return false;
-    } else {
-      createUser({
-        name,
-        email,
-        address,
-        phone,
-      });
-
-      setName('');
-      setEmail('');
-      setAddress('');
-      setPhone('');
-      setError('');
     }
+
+    if (!isValidCpf(cpf)) {
+      setError('CPF não é válido.');
+      return false;
+    }
+
+    createUser({
+      name,
+      email,
+      address,
+      cpf,
+      phone,
+    });
+
+    setName('');
+    setEmail('');
+    setAddress('');
+    setCpf('');
+    setPhone('');
+    setError('');
   };
 
   return (
@@ -78,6 +90,19 @@ const CreateForm = ({ createUser }) => {
 
           <div className='input-field'>
             <InputMask
+              mask='999.999.999-99'
+              maskChar={null}
+              type='text'
+              id='cpf'
+              name='cpf'
+              value={cpf}
+              onChange={(e) => setCpf(e.target.value)}
+            />
+            <label htmlFor='name'>CPF</label>
+          </div>
+
+          <div className='input-field'>
+            <InputMask
               mask='(99)99999-9999'
               maskChar={null}
               type='text'
@@ -90,7 +115,7 @@ const CreateForm = ({ createUser }) => {
           </div>
           <button
             type='submit'
-            className='waves-light waves-effect btn green accent-4'>
+            className='waves-light waves-effect btn blue darken-4'>
             <i className='fas fa-plus-circle'></i> Criar
           </button>
           {error !== '' && <div className='error'>{error}</div>}

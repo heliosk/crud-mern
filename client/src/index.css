@@ -14,23 +14,3 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-/* Inactive/Active Default input field color */
-.input-field input[type]:not([readonly]),
-.input-field input[type]:focus:not([readonly]),
-.input-field textarea:not([readonly]),
-.input-field textarea:focus:not([readonly]) {
-  border-bottom: 1px solid #1cbb29;
-  box-shadow: 0 1px 0 0 #1cbb29;
-}
-
-/* Inactive/Active Default input label color */
-.input-field input[type]:focus:not([readonly]) + label,
-.input-field textarea:focus:not([readonly]) + label {
-  color: #1cbb29;
-}
-
-::selection {
-  color: white;
-  background: #1cbb29;
-}
