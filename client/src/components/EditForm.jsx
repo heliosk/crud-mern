@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import InputMask from 'react-input-mask';
 import * as EmailValidator from 'email-validator';
+import { isValidCpf } from '../utils/formValidator';
 
 import '../styles/EditForm.scss';
 
@@ -27,19 +28,27 @@ const EditForm = ({ current, updateUser, setEdit }) => {
 
     if (name === '' || email === '') {
       setError('Nome e e-mail são obrigatórios.');
-    } else if (!EmailValidator.validate(email)) {
+      return false;
+    }
+
+    if (!EmailValidator.validate(email)) {
       setError('E-mail não é válido.');
       return false;
-    } else {
-      updateUser(id, { name, email, address, phone });
-
-      setName('');
-      setEmail('');
-      setAddress('');
-      setCpf('');
-      setPhone('');
-      setError('');
     }
+
+    if (!isValidCpf(cpf)) {
+      setError('CPF não é válido.');
+      return false;
+    }
+
+    updateUser(id, { name, email, address, phone });
+
+    setName('');
+    setEmail('');
+    setAddress('');
+    setCpf('');
+    setPhone('');
+    setError('');
   };
 
   return (
