@@ -17,3 +17,9 @@
   color: white;
   background: $quali-blue;
 }
+
+#root {
+  @media only screen and (max-width: 600px) {
+    width: max-content;
+  }
+}
