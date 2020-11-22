@@ -73,7 +73,7 @@ const CreateForm = ({ createUser }) => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <label htmlFor='name'>E-mail</label>
+            <label htmlFor='email'>E-mail</label>
           </div>
 
           <div className='input-field'>
@@ -85,7 +85,7 @@ const CreateForm = ({ createUser }) => {
               maxLength={40}
               onChange={(e) => setAddress(e.target.value)}
             />
-            <label htmlFor='name'>Endereço</label>
+            <label htmlFor='address'>Endereço</label>
           </div>
 
           <div className='input-field'>
@@ -98,7 +98,7 @@ const CreateForm = ({ createUser }) => {
               value={cpf}
               onChange={(e) => setCpf(e.target.value)}
             />
-            <label htmlFor='name'>CPF</label>
+            <label htmlFor='cpf'>CPF</label>
           </div>
 
           <div className='input-field'>
@@ -111,7 +111,7 @@ const CreateForm = ({ createUser }) => {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
             />
-            <label htmlFor='name'>Telefone</label>
+            <label htmlFor='phone'>Telefone</label>
           </div>
           <button
             type='submit'

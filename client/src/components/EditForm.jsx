@@ -41,7 +41,7 @@ const EditForm = ({ current, updateUser, setEdit }) => {
       return false;
     }
 
-    updateUser(id, { name, email, address, phone });
+    updateUser(id, { name, email, address, cpf, phone });
 
     setName('');
     setEmail('');
