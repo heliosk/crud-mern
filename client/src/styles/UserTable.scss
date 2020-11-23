@@ -18,3 +18,8 @@
 .btn-floating i {
   font-size: 1.2em;
 }
+
+.sortable {
+  cursor: pointer;
+  user-select: none;
+}

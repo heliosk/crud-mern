@@ -15,6 +15,7 @@ const Home = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [error, setError] = useState('');
   const [search, setSearch] = useState('');
+  const [sort, setSort] = useState('');
 
   useEffect(() => {
     updateUsersTable();
@@ -26,6 +27,7 @@ const Home = () => {
 
       setFilter([]);
       setSearch('');
+      setSort('');
 
       if (res.status === 200) {
         setUsers(res.data);
@@ -92,7 +94,28 @@ const Home = () => {
       return user.name.includes(search) || user.email.includes(search);
     });
 
+    if (e.target.value.length === 0) {
+      setSort('');
+    }
+
     setFilter(filteredUsers);
+  };
+
+  const handleSortName = () => {
+    const currentData = filter.length > 0 ? filter : users;
+
+    if (sort === '') {
+      setSort('asc');
+      currentData.sort((a, b) => a.name.localeCompare(b.name));
+    }
+
+    if (sort === 'asc') {
+      setSort('desc');
+      currentData.sort((a, b) => b.name.localeCompare(a.name));
+    } else {
+      setSort('asc');
+      currentData.sort((a, b) => a.name.localeCompare(b.name));
+    }
   };
 
   return (
@@ -129,12 +152,16 @@ const Home = () => {
               deleteUser={deleteUser}
               users={filter}
               editTableUser={editTableUser}
+              handleSortName={handleSortName}
+              sort={sort}
             />
           ) : (
             <UserTable
               deleteUser={deleteUser}
               users={users}
               editTableUser={editTableUser}
+              handleSortName={handleSortName}
+              sort={sort}
             />
           )}
         </div>

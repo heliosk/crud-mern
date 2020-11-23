@@ -2,13 +2,23 @@ import React from 'react';
 
 import '../styles/UserTable.scss';
 
-const UserTable = ({ users, deleteUser, editTableUser }) => {
+const UserTable = ({
+  users,
+  deleteUser,
+  editTableUser,
+  handleSortName,
+  sort,
+}) => {
   return (
     <div className='user-list'>
       <table className='responsive-table'>
         <thead>
           <tr>
-            <th>Nome</th>
+            <th onClick={handleSortName} className='sortable'>
+              Nome {sort === 'asc' && <i className='fa fa-sort-up'></i>}
+              {sort === 'desc' && <i className='fa fa-sort-down'></i>}
+              {sort === '' && <i className='fas fa-sort'></i>}
+            </th>
             <th>E-mail</th>
             <th>Endereço</th>
             <th>CPF</th>
