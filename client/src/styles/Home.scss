@@ -9,3 +9,12 @@
     justify-content: space-around;
   }
 }
+
+.table-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.search-input {
+  margin-left: 40px;
+}
