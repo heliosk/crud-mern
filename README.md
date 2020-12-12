@@ -1,26 +1,24 @@
-# Teste Qualicorp - Desenvolvedor Fullstack
-
 Utilizado stack MERN (mongodb, express, react e node.js)
 
 ## Instalação backend
 
 ## root folder
 
-- Adicionar valores ao .env
+-   Adicionar valores ao .env
 
-- Instalar dependências:
+-   Instalar dependências:
 
 ```bash
 npm i
 ```
 
-- Em modo de desenvolvimento:
+-   Em modo de desenvolvimento:
 
 ```bash
 npm run dev
 ```
 
-- Em modo produção:
+-   Em modo produção:
 
 ```bash
 npm start
@@ -30,21 +28,21 @@ npm start
 
 ## client folder
 
-- Adicionar valores ao .env
+-   Adicionar valores ao .env
 
-- Instalar dependências:
+-   Instalar dependências:
 
 ```bash
 npm i
 ```
 
-- Modo desenvolvimento:
+-   Modo desenvolvimento:
 
 ```bash
 npm start
 ```
 
-- Build:
+-   Build:
 
 ```bash
 npm run build
